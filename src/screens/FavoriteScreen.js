@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, FlatList, Text, View, Button} from 'react-native';
-import Items from '../components/items';
-import Container from '../components/container';
-import {useSelector, useDispatch} from 'react-redux';
+import Container from '../components/Container';
+import Items from '../components/Items';
+import React from 'react';
+import {StyleSheet, FlatList, Text, Button} from 'react-native';
 import {clearFavorites} from '../redux/actions/favoritesActions';
+import {useSelector, useDispatch} from 'react-redux';
 
 const FavoriteScreen = () => {
   const dispatch = useDispatch();
   const favoriteItems = useSelector(state => state.favorites);
+
   const pressHandler = () => {
     dispatch(clearFavorites());
   };

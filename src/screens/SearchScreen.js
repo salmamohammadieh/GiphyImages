@@ -1,10 +1,10 @@
+import Container from '../components/Container';
+import ErrorMessage from '../components/Error';
+import Items from '../components/Items';
 import React, {useState} from 'react';
+import SearchIcon from '../components/SearchIcon';
 import {Text, View, TextInput, FlatList, StyleSheet} from 'react-native';
-import SearchIcon from '../components/searchicon';
-import Container from '../components/container';
-import {giphy} from '../utils/api';
-import Items from '../components/items';
-import ErrorMessage from '../components/error';
+import {giphy} from '../services/api';
 
 const SearchScreen = () => {
   const [results, setResults] = useState([]);
@@ -59,18 +59,18 @@ const SearchScreen = () => {
 
 const styles = StyleSheet.create({
   input: {
+    flex: 1,
+    fontSize: 18,
     height: 40,
     margin: 8,
     width: '80%',
-    flex: 1,
-    fontSize: 18,
   },
   wrapper: {
-    flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    borderWidth: 1,
     borderRadius: 5,
+    borderWidth: 1,
+    flexDirection: 'row',
+    paddingHorizontal: 10,
   },
 });
 export default SearchScreen;

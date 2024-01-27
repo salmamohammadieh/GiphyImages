@@ -1,9 +1,9 @@
+import Container from '../components/Container';
+import ErrorMessage from '../components/Error';
+import Items from '../components/Items';
 import React, {useState, useEffect, useCallback} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
-import Items from '../components/items';
-import Container from '../components/container';
-import {giphy} from '../utils/api';
-import ErrorMessage from '../components/error';
+import {giphy} from '../services/api';
 
 const HomeScreen = ({}) => {
   const [error, setError] = useState('');
@@ -41,6 +41,9 @@ const HomeScreen = ({}) => {
           imageUrl={item.images?.fixed_width_downsampled?.url}
           id={item.id}
           withFavorites
+          slug={item.slug}
+          type={item.type}
+          ur={item.url}
         />
       );
     },

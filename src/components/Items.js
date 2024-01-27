@@ -1,17 +1,34 @@
+import FavoriteIcon from './FavoriteIcon';
 import React, {memo} from 'react';
+import useFavoriteActions from '../hooks/useFavoriteActions';
+import useFavoriteCheck from '../hooks/useFavoriteCheck';
 import {Text, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import FavoriteIcon from './favoriteIcon';
-import useFavoriteCheck from '../hooks/useFavoriteCheck';
-import useFavoriteActions from '../hooks/useFavoriteActions';
 
-const Items = ({withFavorites, id, title, imageUrl, description}) => {
+const Items = ({
+  withFavorites,
+  id,
+  title,
+  imageUrl,
+  description,
+  slug,
+  url,
+  type,
+}) => {
   const navigation = useNavigation();
   const isSaved = useFavoriteCheck(id);
   const {handleToggleFavorite} = useFavoriteActions();
 
   const pressHandler = () => {
-    navigation.navigate('DetailsScreen', {id: id});
+    navigation.navigate('DetailsScreen', {
+      id,
+      title,
+      imageUrl,
+      description,
+      slug,
+      url,
+      type,
+    });
   };
 
   return (
@@ -32,7 +49,7 @@ const Items = ({withFavorites, id, title, imageUrl, description}) => {
           <Text style={styles.text}>description: {description}</Text>
         ) : null}
         {withFavorites && (
-          <View style={styles.cardContent}>
+          <View style={styles.favoriteIcon}>
             <FavoriteIcon
               status={isSaved}
               onPress={() => {
@@ -48,9 +65,9 @@ const Items = ({withFavorites, id, title, imageUrl, description}) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 18,
-    flex: 1,
     color: '#778899',
+    flex: 1,
+    fontSize: 18,
     padding: 10,
   },
   image: {
@@ -58,12 +75,13 @@ const styles = StyleSheet.create({
     height: 250,
   },
   card: {
-    marginVertical: 8,
     backgroundColor: 'white',
     flexBasis: '45%',
     marginHorizontal: 10,
+    marginVertical: 8,
   },
   imageContainer: {
+    elevation: 5,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -74,10 +92,11 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   favoriteIcon: {
-    bottom: '0',
-    right: '0',
+    alignSelf: 'flex-end',
+    margin: 5,
   },
 });
 export default memo(Items);

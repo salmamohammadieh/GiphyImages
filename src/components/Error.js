@@ -11,11 +11,11 @@ const ErrorMessage = ({error}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     backgroundColor: 'red',
-    position: 'absolute',
-    bottom: 0,
     borderRadius: 2,
+    bottom: 0,
+    position: 'absolute',
+    width: '100%',
   },
   error: {
     fontSize: 20,

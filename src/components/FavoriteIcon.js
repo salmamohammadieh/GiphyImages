@@ -1,5 +1,5 @@
-import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import React from 'react';
 import {TouchableOpacity} from 'react-native';
 
 function FavoriteIcon({status, onPress}) {

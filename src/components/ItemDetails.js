@@ -1,9 +1,9 @@
+import Container from './Container';
+import FavoriteIcon from './FavoriteIcon';
 import React from 'react';
-import {Text, Image, View, StyleSheet} from 'react-native';
-import Container from './container';
-import FavoriteIcon from './favoriteIcon';
 import useFavoriteActions from '../hooks/useFavoriteActions';
 import useFavoriteCheck from '../hooks/useFavoriteCheck';
+import {Text, Image, View, StyleSheet} from 'react-native';
 
 const ItemDetails = ({title, imageUrl, slug, type, url, description, id}) => {
   const isSaved = useFavoriteCheck(id);
@@ -15,12 +15,14 @@ const ItemDetails = ({title, imageUrl, slug, type, url, description, id}) => {
       <View style={styles.meta}>
         <Text style={styles.type}>type: {type}</Text>
         <Text style={styles.description}> | {description}</Text>
-        <FavoriteIcon
-          status={isSaved}
-          onPress={() => {
-            handleToggleFavorite(isSaved, id, title, imageUrl);
-          }}
-        />
+        <View style={styles.favoriteIcon}>
+          <FavoriteIcon
+            status={isSaved}
+            onPress={() => {
+              handleToggleFavorite(isSaved, id, title, imageUrl);
+            }}
+          />
+        </View>
       </View>
       {imageUrl && (
         <Image
@@ -42,26 +44,31 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   meta: {
+    alignItems: 'center',
     flexDirection: 'row',
     marginBottom: 20,
   },
   type: {
-    fontSize: 18,
     color: '#999',
+    fontSize: 18,
     marginRight: 10,
   },
   description: {
-    fontSize: 18,
     color: '#999',
+    fontSize: 18,
   },
   image: {
-    width: '100%',
     height: 300,
     marginBottom: 20,
+    width: '100%',
   },
   content: {
     fontSize: 16,
     marginTop: 20,
+  },
+  favoriteIcon: {
+    alignSelf: 'flex-end',
+    marginLeft: 'auto',
   },
 });
 export default ItemDetails;
